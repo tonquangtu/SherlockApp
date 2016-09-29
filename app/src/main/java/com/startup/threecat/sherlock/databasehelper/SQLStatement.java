@@ -16,9 +16,11 @@ public class SQLStatement {
     public static final String ADDRESS_PERSONS = "address";
     public static final String COMMENT_PERSONS = "comment";
     public static final String PATH_IMAGE_PERSONS = "path_image";
-    public static final String ID_MOVEMENTS = "id";
     public static final String LOCATION_MOVEMENTS= "location";
     public static final String MOVEMENT_NOTE_MOVEMENTS = "movement_note";
+    public static final String TIME_MOVEMENTS = "time";
+    public static final String ID_PERSON_MOVEMENTS = "id_person";
+    public static final String ID_MOVEMENT_MOVEMENTS = "id_movement";
 
     public static final String CREATE_TABLE_PERSONS = "CREATE TABLE " +
             TABLE_PERSONS + "(id TEXT NOT NULL PRIMARY KEY," +
@@ -32,13 +34,18 @@ public class SQLStatement {
             "path_image TEXT);";
 
     public static final String CREATE_TABLE_MOVEMENTS = "CREATE TABLE " +
-            TABLE_MOVEMENTS + "(id TEXT NOT NULL," +
+            TABLE_MOVEMENTS + "(id_movement TEXT NOT NULL PRIMARY KEY," +
+            "id_person TEXT NOT NULL," +
             "location TEXT NOT NULL," +
-            "movement_note NOT NULL);";
+            "movement_note TEXT NOT NULL," +
+            "time TEXT NOT NULL);";
 
     public static String DELETE_TABLE_PERSONS = "DROP TABLE IF EXISTS " + TABLE_PERSONS;
     public static String DELETE_TABLE_MOVEMENTS = "DROP TABLE IF EXISTS " + TABLE_MOVEMENTS;
 
-    public static String SQL_GET_ALL_PERSON = "SELECT * FROM " + TABLE_PERSONS;
-    public static String SQL_GET_MOVEMENTS_OF_PERSON = "SELECT location, movement_note FROM Movements WHERE id = ?";
+    public static String SQL_GET_ALL_PERSON = "SELECT * FROM " + TABLE_PERSONS + " LIMIT ?";
+    public static String SQL_GET_MOVEMENTS_OF_PERSON = "SELECT id_movement, location, movement_note, time FROM Movements WHERE id_person = ?";
+    public static final String SQL_UPDATE_PERSONS = "id = ?";
+    public static final String DELETE_ROW_MOVEMENT = "id_movement = ?";
+    public static final String DELETE_PERSON = "id = ?";
 }

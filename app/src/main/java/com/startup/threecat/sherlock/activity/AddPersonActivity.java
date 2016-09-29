@@ -21,6 +21,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -210,18 +211,8 @@ public class AddPersonActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_FROM_GALLERY
                 && resultCode == RESULT_OK
                 && data != null) {
+            handleShowImageFromGallery(data);
 
-            Uri selectedImage = data.getData();
-            String [] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            LoadImage.loadImagePerson(this, imgAddPerson, picturePath);
-            mCurrentPhotoPath = picturePath;
-            typeImage = PICK_IMAGE_FROM_GALLERY;
         }else if(requestCode == TAKE_PHOTO
                 && resultCode == RESULT_OK) {
 
@@ -229,6 +220,22 @@ public class AddPersonActivity extends AppCompatActivity {
             typeImage = TAKE_PHOTO;
         }
     }
+
+    public void handleShowImageFromGallery(Intent data) {
+
+        Uri selectedImage = data.getData();
+        String [] filePathColumn = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(selectedImage,
+                filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String picturePath = cursor.getString(columnIndex);
+        cursor.close();
+        LoadImage.loadImagePerson(this, imgAddPerson, picturePath);
+        mCurrentPhotoPath = picturePath;
+        typeImage = PICK_IMAGE_FROM_GALLERY;
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -271,6 +278,7 @@ public class AddPersonActivity extends AppCompatActivity {
                 storageDir
         );
         mCurrentPhotoPath =  image.getAbsolutePath();
+        Log.e("tuton", mCurrentPhotoPath);
         return image;
     }
 
@@ -285,7 +293,7 @@ public class AddPersonActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(fromFile));
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(desFile));
             mCurrentPhotoPath = desFile.getAbsolutePath();
-
+            Log.e("tuton", mCurrentPhotoPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -318,7 +326,6 @@ public class AddPersonActivity extends AppCompatActivity {
                     gender, hairColor, address, comment, movements);
             showConfirm(person, sGender);
         }
-
     }
 
     public boolean checkEmpty(String name, String sAge, String sHeight) {

@@ -21,7 +21,6 @@ public class Person implements Serializable{
     private ArrayList<Movement> movements;
     private String urlImage;
 
-
     public Person() {
 
     }
@@ -57,9 +56,23 @@ public class Person implements Serializable{
         this.movements = movements;
     }
 
+    public void copy(Person fromPerson) {
+        this.id = fromPerson.getId();
+        this.name = fromPerson.getName();
+        this.age = fromPerson.getAge();
+        this.height = fromPerson.getHeight();
+        this.hairColor = fromPerson.getHairColor();
+        this.address = fromPerson.getAddress();
+        this.comment = fromPerson.getComment();
+        this.urlImage = fromPerson.getUrlImage();
+        this.movements = fromPerson.getMovements();
+    }
+
+
     public String getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
@@ -95,7 +108,41 @@ public class Person implements Serializable{
     public String getUrlImage() {
         return urlImage;
     }
+
     public void setUrlImage(String url) {
         this.urlImage = url;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public void setHairColor(String hairColor) {
+        this.hairColor = hairColor;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setMovements(ArrayList<Movement> movements) {
+        this.movements = movements;
+    }
+
 }

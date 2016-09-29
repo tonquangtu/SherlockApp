@@ -11,14 +11,17 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.startup.threecat.sherlock.R;
 import com.startup.threecat.sherlock.adapter.RVListPersonAdapter;
+import com.startup.threecat.sherlock.databasehelper.DatabaseUtil;
 import com.startup.threecat.sherlock.model.ConstantData;
 import com.startup.threecat.sherlock.model.Person;
 import com.startup.threecat.sherlock.util.SpaceItem;
@@ -64,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-
         MenuItem searchItem = menu.findItem(R.id.mn_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -171,8 +173,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleUpload() {}
 
-    public boolean removePerson(int position) {
-        return true;
+    public void removePerson(int position) {
+        Person person = persons.get(position);
+        boolean isDel = DatabaseUtil.deletePerson(this, person);
+        if(isDel) {
+            Toast.makeText(this, "Delete successful", Toast.LENGTH_LONG).show();
+            persons.remove(position);
+            rvListPersonAdapter.notifyItemRemoved(position);
+        }else {
+            Toast.makeText(this, "Can't delete ", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -180,23 +190,35 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == ADD_PERSON && resultCode == ConstantData.RESULT_CODE_ADD_PERSON) {
-
-            ArrayList<Person> result ;
             Bundle bundle = data.getBundleExtra(ConstantData.PACKAGE);
-            result = (ArrayList<Person>) bundle.getSerializable(ConstantData.RESULT_ADD_PERSON);
-            if(result != null && result.size() != 0) {
-                int oldSize = persons.size();
-                persons.addAll(result);
-                int newSize = persons.size();
-                if(oldSize == 0 && imgNoData.getVisibility() == View.VISIBLE) {
-                    imgNoData.setVisibility(View.GONE);
-                }
-                if(rvListPerson.getVisibility() == View.GONE) {
-                    rvListPerson.setVisibility(View.VISIBLE);
-                }
-                for(int i = oldSize; i < newSize; i++) {
-                    rvListPersonAdapter.notifyItemInserted(i);
-                }
+            handleResultAddPerson(bundle);
+        }else if(requestCode == PERSON_INFO && resultCode == ConstantData.RESULT_CODE_INFO_PERSON) {
+
+            Bundle bundle = data.getBundleExtra(ConstantData.PACKAGE);
+            int position = bundle.getInt(ConstantData.POSITION);
+            Person person = (Person)bundle.getSerializable(ConstantData.PERSON_TAG);
+            Person prePerson = persons.get(position);
+            prePerson.copy(person);
+            rvListPersonAdapter.notifyItemChanged(position);
+        }
+    }
+
+    public void handleResultAddPerson(Bundle bundle) {
+
+        ArrayList<Person> result ;
+        result = (ArrayList<Person>) bundle.getSerializable(ConstantData.RESULT_ADD_PERSON);
+        if(result != null && result.size() != 0) {
+            int oldSize = persons.size();
+            persons.addAll(result);
+            int newSize = persons.size();
+            if(oldSize == 0 && imgNoData.getVisibility() == View.VISIBLE) {
+                imgNoData.setVisibility(View.GONE);
+            }
+            if(rvListPerson.getVisibility() == View.GONE) {
+                rvListPerson.setVisibility(View.VISIBLE);
+            }
+            for(int i = oldSize; i < newSize; i++) {
+                rvListPersonAdapter.notifyItemInserted(i);
             }
         }
     }
@@ -206,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
         rvListPersonAdapter.setListener(new RVListPersonAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
+                Log.e("tuton", "vao1");
                 handleItemClick(position);
             }
 

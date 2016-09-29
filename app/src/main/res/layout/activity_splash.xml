@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_grey_400"
-    tools:context="com.startup.threecat.sherlockgmo.activity.SplashActivity">
+    tools:context="com.startup.threecat.sherlock.activity.SplashActivity">
 
     <ProgressBar
         android:id="@+id/pgbLoader"

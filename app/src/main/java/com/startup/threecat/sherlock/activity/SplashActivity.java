@@ -36,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
 
             persons = DatabaseUtil.getAllPerson(SplashActivity.this);
-            SystemClock.sleep(1000);
+            SystemClock.sleep(300);
             return null;
         }
 

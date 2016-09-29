@@ -17,6 +17,7 @@
         <ImageView
             android:id="@+id/imgPerson"
             android:scaleType="centerCrop"
+            android:clickable="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

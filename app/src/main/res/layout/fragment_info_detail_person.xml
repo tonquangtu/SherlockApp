@@ -103,18 +103,17 @@
 
             <RadioButton
                 android:id="@+id/rbtMale"
-                android:checked="true"
                 android:layout_weight="1"
                 android:text="@string/rdbt_txt_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-           <RadioButton
-               android:id="@+id/rbtFemale"
-               android:layout_weight="1"
-               android:text="@string/rdbt_txt_female"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/rbtFemale"
+                android:layout_weight="1"
+                android:text="@string/rdbt_txt_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </RadioGroup>
         <TextView
             android:textColor="@color/black"
@@ -161,25 +160,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_weight="1"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/btn_txt_save"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_weight="1"
-                android:text="@string/btn_txt_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/btnReturn"
-                android:layout_weight="1"
-                android:text="@string/btn_txt_return"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

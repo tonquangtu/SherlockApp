@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:paddingLeft="8dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingRight="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txt_movement_note"
+            android:text="Luch time"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:ems="15"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txt_movement_location"
+            android:text="Ciao cafe - Hang bai"
+            android:layout_below="@+id/txt_movement_note"
+            android:layout_marginTop="8dp"
+            android:ems="30"
+            android:textSize="12dp"
+            android:textColor="@color/grey_600"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:textColor="@color/teal_600"
+            android:text="2013-11-19 14:15:55"
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:layout_below="@+id/txt_time"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

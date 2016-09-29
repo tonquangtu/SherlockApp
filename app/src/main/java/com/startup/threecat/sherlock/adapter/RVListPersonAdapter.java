@@ -54,22 +54,7 @@ public class RVListPersonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final PersonHolder personHolder = (PersonHolder)holder;
         Person person = persons.get(position);
         personHolder.populate(person);
-        personHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onItemClick(v, personHolder.getLayoutPosition());
-            }
-        });
 
-        personHolder.imgPerson.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if(listener != null) {
-                    listener.onLongItemClick(v, personHolder.getLayoutPosition());
-                }
-                return false;
-            }
-        });
     }
 
     @Override
@@ -77,7 +62,7 @@ public class RVListPersonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return persons.size();
     }
 
-    public static class PersonHolder extends RecyclerView.ViewHolder {
+    public class PersonHolder extends RecyclerView.ViewHolder {
 
         ImageView imgPerson;
         TextView txtName;
@@ -88,6 +73,24 @@ public class RVListPersonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             txtName = (TextView)itemView.findViewById(R.id.txtPersonName);
             txtMovements = (TextView)itemView.findViewById(R.id.txtMovements);
             imgPerson = (ImageView)itemView.findViewById(R.id.imgPerson);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null) {
+                        listener.onItemClick(v, getLayoutPosition());
+                    }
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if(listener != null) {
+                        listener.onLongItemClick(v, getLayoutPosition());
+                    }
+                    return false;
+                }
+            });
         }
 
         public void populate(Person person) {
