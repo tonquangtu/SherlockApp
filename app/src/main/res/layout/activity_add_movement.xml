@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.startup.threecat.sherlock.activity.AddPersonActivity">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imgBtnLocation"
+                android:background="@drawable/boder_image"
+                android:elevation="4dp"
+
+                android:src="@drawable/location"
+                android:layout_marginTop="8dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtMovementLocation"
+                    android:maxLines="1"
+                    android:textColorHint="@color/grey_300"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:hint="@string/edt_hint_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:text="@string/txt_movement_note"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:id="@+id/edtMovementNote"
+            android:layout_marginTop="4dp"
+            android:hint="@string/edt_hint_movement_note"
+            android:inputType="text"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_weight="1"
+                android:text="@string/btn_txt_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnReturn"
+                android:layout_weight="1"
+                android:text="@string/btn_txt_return"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>

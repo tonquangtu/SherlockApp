@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_height="?attr/actionBarSize"
@@ -18,7 +19,6 @@
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
-
         android:id="@+id/rvListPerson"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
@@ -28,7 +28,6 @@
     </android.support.v7.widget.RecyclerView>
 
     <ImageView
-
         android:id="@+id/imgNoData"
         android:src="@drawable/no_data"
         android:layout_centerInParent="true"
@@ -37,4 +36,12 @@
         android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/pgbLoader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        style="?android:attr/progressBarStyle"/>
+
 </RelativeLayout>
