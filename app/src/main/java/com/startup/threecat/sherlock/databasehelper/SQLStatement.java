@@ -43,7 +43,7 @@ public class SQLStatement {
     public static String DELETE_TABLE_PERSONS = "DROP TABLE IF EXISTS " + TABLE_PERSONS;
     public static String DELETE_TABLE_MOVEMENTS = "DROP TABLE IF EXISTS " + TABLE_MOVEMENTS;
 
-    public static String SQL_GET_ALL_PERSON = "SELECT * FROM " + TABLE_PERSONS + " LIMIT ?";
+    public static String SQL_GET_ALL_PERSON = "SELECT * FROM " + TABLE_PERSONS ;
     public static String SQL_GET_MOVEMENTS_OF_PERSON = "SELECT id_movement, location, movement_note, time FROM Movements WHERE id_person = ?";
     public static final String SQL_UPDATE_PERSONS = "id = ?";
     public static final String DELETE_ROW_MOVEMENT = "id_movement = ?";

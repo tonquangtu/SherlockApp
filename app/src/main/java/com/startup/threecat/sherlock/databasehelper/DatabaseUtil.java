@@ -33,7 +33,7 @@ public class DatabaseUtil {
 
        SQLiteDatabase dbReader = DatabaseHelper.getDbReader(context);
        String sqlGetAllPerson = SQLStatement.SQL_GET_ALL_PERSON;
-       Cursor cursor = dbReader.rawQuery(sqlGetAllPerson, new String [] {"2"});
+       Cursor cursor = dbReader.rawQuery(sqlGetAllPerson, null);
        ArrayList<Person> persons = new ArrayList<>();
        if(cursor != null) {
            Person tempPerson;
